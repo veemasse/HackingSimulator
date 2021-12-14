@@ -6,6 +6,15 @@ public class AudioManager : MonoBehaviour
 {
     public Sound [] sounds;
 
+    //Adding sound for keypress soon
+    /*void Update()
+    {
+        if (Input.anyKey)
+        {
+            Debug.Log("A key or mouse click has been detected");
+        }
+    }*/
+
     void Awake () {
         foreach (Sound s in sounds)
         {

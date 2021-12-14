@@ -12,7 +12,7 @@ public class Interpreter : MonoBehaviour
         {"green", "#008000"},
         {"red", "#FF0000"}
     };
-
+    
     bool vpn = false;
     float pcpower;
 
@@ -22,6 +22,7 @@ public class Interpreter : MonoBehaviour
     string mobo ="Motherboard: ASUS TUSL2-C rev. 1.04 Socket 370 Motherboard";
     string gpu ="GPU: Nvidia Riva TNT";
     string hdd ="HDD: 8.4GB";
+
     
     List<string> response = new List<string>();
     public List<string> Interpret(string userInput)

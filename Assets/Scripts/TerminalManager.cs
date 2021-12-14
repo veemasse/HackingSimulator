@@ -34,7 +34,7 @@ public class TerminalManager : MonoBehaviour
             AddDirectoryLine(userInput);
 
             //Add the interpretation lines
-            int lines = AddInterpreterLines( interpreter.Interpret(userInput.ToLower() ) );
+            int lines = AddInterpreterLines(interpreter.Interpret(userInput));
 
             //Scroll to the bottom of the scrollrect.
             ScrollToBottom(lines);

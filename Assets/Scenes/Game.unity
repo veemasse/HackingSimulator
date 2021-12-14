@@ -1201,6 +1201,11 @@ MonoBehaviour:
     volume: 0.249
     pitch: 1.01
     source: {fileID: 0}
+  - name: keypress1
+    clip: {fileID: 8300000, guid: cc3a01637d47b64438910728b6fb6fed, type: 3}
+    volume: 0.81
+    pitch: 1.01
+    source: {fileID: 0}
 --- !u!4 &1429891476
 Transform:
   m_ObjectHideFlags: 0
