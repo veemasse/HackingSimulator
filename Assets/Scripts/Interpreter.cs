@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 
+
 public class Interpreter : MonoBehaviour
 {
     Dictionary<string, string> colors = new Dictionary<string, string>()
@@ -35,12 +36,20 @@ public class Interpreter : MonoBehaviour
             response.Add("Help");
             response.Add("IPCONFIG");
             response.Add("VPN");
+            response.Add("PAUSE");
+            response.Add("SYSTEMINFO");
             return response;
         }
         if (args[0] == "test")
         {
             ListEntry("test", "yeees");
             ListEntry("stop", "yes");
+            return response;
+        }
+        if (args[0] == "pause")
+        {
+            response.Add("Pausing...");
+            PauseMenu.Paused = true;
             return response;
         }
         if (args[0] == "ascii")
@@ -55,11 +64,18 @@ public class Interpreter : MonoBehaviour
             response.Add(mobo);
             response.Add(gpu);
             response.Add(hdd);
+            response.Add("IPv4: " + ip);
             return response;
         }
         if (args[0] == "ipconfig")
         {
             response.Add("IPv4: " + ip);
+            return response;
+        }
+        if (args[0] == "hackerradio")
+        {
+            FindObjectOfType<AudioManager>().Play("ya");
+            response.Add("Now playing: ya.wav - Arlet Ritson");
             return response;
         }
         if (args[0] == "vpn")
@@ -83,8 +99,7 @@ public class Interpreter : MonoBehaviour
         }
         else
         {
-            response.Add("Komentoa ei tunnistettu, kokeile komentoa help,");
-            response.Add("jotta näät saatavilla olevat komennot.");
+            response.Add("Komentoa ei tunnistettu, kokeile komentoa HELP");
             return response;
         }
     }
