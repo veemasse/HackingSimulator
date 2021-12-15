@@ -34,7 +34,7 @@ public class TerminalManager : MonoBehaviour
             AddDirectoryLine(userInput);
 
             //Add the interpretation lines
-            int lines = AddInterpreterLines(interpreter.Interpret(userInput));
+            int lines = AddInterpreterLines( interpreter.Interpret(userInput.ToLower()));
 
             //Scroll to the bottom of the scrollrect.
             ScrollToBottom(lines);
@@ -55,7 +55,7 @@ public class TerminalManager : MonoBehaviour
 
     void AddDirectoryLine(string userInput)
     {
-        //Muokkaa sisällön kokoa.
+        //Muokkaa sisällön kokoa
         Vector2 msgListSize = msgList.GetComponent<RectTransform>().sizeDelta;
         msgList.GetComponent<RectTransform>().sizeDelta = new Vector2(msgListSize.x, msgListSize.y + 35.0f);
 
@@ -63,7 +63,6 @@ public class TerminalManager : MonoBehaviour
 
         msg.transform.SetSiblingIndex(msgList.transform.childCount - 1);
 
-        //Set the text of this new gameobject
         msg.GetComponentsInChildren<Text>()[1].text = userInput;
     }
     int AddInterpreterLines(List<string> interpretation)

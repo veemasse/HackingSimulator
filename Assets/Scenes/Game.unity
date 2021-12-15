@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.012396568, g: 0.7264151, b: 0, a: 1}
+  m_Color: {r: 0.05490196, g: 0.41960785, b: 0.05490196, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1631,6 +1631,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SampleResponseLine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1981108840097007690, guid: ee5875c080e199c49b4d253ffd9a1274,
+        type: 3}
+      propertyPath: m_Text
+      value: Type anything to terminal in order to talk to the Boss.
       objectReference: {fileID: 0}
     - target: {fileID: 1981108840097007691, guid: ee5875c080e199c49b4d253ffd9a1274,
         type: 3}

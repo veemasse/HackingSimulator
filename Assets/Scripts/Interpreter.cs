@@ -9,19 +9,22 @@ public class Interpreter : MonoBehaviour
 {
     Dictionary<string, string> colors = new Dictionary<string, string>()
     {
-        {"green", "#008000"},
-        {"red", "#FF0000"}
+        {"green", "#149414"},
+        {"red", "#FF0000"},
+        {"orange", "B48E00"},
+        {"yellow", "FFFF00"}
     };
     public Text DirectoryText;
     public Text DirectoryText2;
 
     bool vpn = false;
-    bool bruteforce = false;
+    bool canbruteforce = false;
     bool bruteforced = false;
     bool g = true;
     bool c = false;
     bool password = false;
-    bool hacked = false;
+    bool canddos = false;
+    bool indatabase = false;
 
     float performance = 920f;
     int balance = 500;
@@ -41,7 +44,7 @@ public class Interpreter : MonoBehaviour
     string targetEmail = "HarryEMorris@jourrapide.com";
     string targetIP = "182.34.142.241.25";
 
-    string currentMission = "You are currently in mission 2";
+    string currentMission = "You are currently in mission 1";
     
     List<string> response = new List<string>();
     public List<string> Interpret(string userInput)
@@ -56,31 +59,40 @@ public class Interpreter : MonoBehaviour
             {
                 if (args[0] == "help")
                 {
-                    ListEntry("PCUpgrade - Cost $500", "Upgrade your pc to get more performance units");
-                    ListEntry("Help", "Get help");
-                    ListEntry("Mission", "Shows your current job to do");
-                    ListEntry("Ipconfig", "Shows your public IP address");
-                    ListEntry("VPN", "Turn on vpn to switch your IP address");
-                    ListEntry("Pause", "Opens incredible pausemenu");
-                    ListEntry("systeminfo", "Shows some ferocious information of your pc and network");
-                    ListEntry("Hackerradio", "Plays incredible beats");
-                    ListEntry("Hacker", "Surprise");
-                    ListEntry("Ping", "yes");
-                    ListEntry("C:", "C Drive");
-                    ListEntry("G:", "G Drive");
-                    ListEntry("BruteForce", "Force to crack someones password");
-                    ListEntry("Tools", "Ask for recommended tools for current mission");
+                    cost("PCUPGRADE ", "Upgrades your pc to -", " Cost: $500");
+                    help("BRUTEFORCE", "Force to crack password. - <color=#FF0000>Requires 1500 performance units </color>");
+                    help("HELP", "Gives you a list of all available commands");
+                    help("MISSION", "Gives you an assignment");
+                    help("IPCONFIG", "Shows your public IP address");
+                    help("VPN", "Turn on/off Virtual Private Network");
+                    help("PAUSE", "Opens incredible pausemenu. You can also use ESC to open it up.");
+                    help("SYSTEMINFO", "Shows some ferocious information of your pc and network");
+                    help("HACKERRADIO", "Plays incredible hack beat");
+                    help("Hacker", "Surprise");
+                    help("PING", "Ping your target");
+                    help("TOOLS", "List of recommended tools for the current mission");
+                    //help("C:", "C Drive");
+                    //help("G:", "G Drive");
                     return response;
                 }
                 if (args[0] == "test")
                 {
-                    ListEntry("test", "yeees");
-                    ListEntry("stop", "yes");
+                    return response;
+                }
+                if (args[0] == "ddos")
+                {
+                    if (canddos == true)
+                    {
+
+                    }else
+                    {
+                        response.Add("You  only use DDoS when you have targets IP address.");
+                    }
                     return response;
                 }
                 if (args[0] == "pause")
                 {
-                    response.Add("Pausing...");
+                    response.Add("Opening pausemenu...");
                     PauseMenu.Paused = true;
                     return response;
                 }
@@ -134,7 +146,7 @@ public class Interpreter : MonoBehaviour
             }
             if (args[0] == "sysinfo" || args[0] == "systeminfo")
             {
-                response.Add("Performance of your pc: " + performance + " units");
+                response.Add("Performance of your pc: " + performance);
                 response.Add(cpu);
                 response.Add(mem);
                 response.Add(mobo);
@@ -150,13 +162,15 @@ public class Interpreter : MonoBehaviour
             }
             if (args[0] == "bruteforce")
             {
-                if (bruteforce == true && bruteforced == false)
+                if (canbruteforce == true && bruteforced == false)
                 {
                         if (performance > 1000)
                         {
                             response.Add("Bruteforcing...");
                             response.Add("Trying password (8492/39330): michelle25");
                             response.Add("Found matching password for \"Admin\": michelle25");
+                            boss("Boss: ", "Congratulations, you got the password.");
+                            notification("Try entering the database again and keep this password in mind!");
                             bruteforced = true;
                             password = true;
                             return response;
@@ -169,7 +183,7 @@ public class Interpreter : MonoBehaviour
                 }
                 else
                 {
-                    response.Add("You may not bruteforce anyone right now.");
+                    response.Add("You can only use bruteforce tool when trying to enter certain databases");
                     return response;
                 }
             }
@@ -178,15 +192,16 @@ public class Interpreter : MonoBehaviour
                 if (password == true)
                 {
                     response.Add("You successfully entered the database.");
-                    ListEntry("Boss", "Hello mr hacker man.");
-                    ListEntry("Boss", "Good job you got successfully inside the database!");
-                    response.Add("To get details of player you may need an email address.");
+                    boss("Boss", "Hello mr hacker man.");
+                    boss("Boss", "Good job, you successfully made it inside the database!");
+                    boss("Boss", "Now we just need an email address.");
+                    indatabase = true;
                     return response;
                 }
             }
             if (args[0] == "HarryEMorris@jourrapide.com")
             {
-                if (hacked == true)
+                if (indatabase == true)
                 {
                     response.Add("Target information:");
                     response.Add("Age: " + targetAge);
@@ -194,9 +209,9 @@ public class Interpreter : MonoBehaviour
                     response.Add("IPv4: " + targetIP);
                     response.Add("Full name: " + targetName);
                     response.Add("Phone Number: " + targetPhone);
-                    ListEntry("Boss", "Hello mr hacker man.");
-                    ListEntry("Boss", "Now you got all the needed information of my target.");
-                    ListEntry("Boss", "Use the new commands to get the modder to taste his own medicine!.");
+                    boss("Boss", "Hello mr hacker man.");
+                    boss("Boss", "Now you got all the needed information of my target.");
+                    boss("Boss", "Use the new commands to get the modder to taste his own medicine!.");
                     response.Add("New unlocked commands:");
                     response.Add("DDOS");
                     response.Add("TextBOMBER");
@@ -215,12 +230,11 @@ public class Interpreter : MonoBehaviour
                 if (missionID == 3)
                 {
                     response.Add(currentMission);
-                    ListEntry("Boss", "Hello mr hacker man.");
-                    ListEntry("Boss", "I was just playing GTA V.");
-                    ListEntry("Boss", "A modder put me in cage and now I am fuming.");
-                    ListEntry("Boss", "You must stop him!");
-                    ListEntry("Boss", "To see the information that I have gathered of the target, use \"TARGETINFO\"");
-                    ListEntry("Boss", "Use command \"TOOLS\", to see recommended tools for current mission");
+                    boss("Boss", "Hello mr hacker man.");
+                    boss("Boss", "I was just playing Grand Theft Car V.");
+                    boss("Boss", "A modder put me in cage and now I am fuming.");
+                    boss("Boss", "You must stop him!");
+                    boss("Boss", "Use command \"TOOLS\", to see recommended tools for current mission");
                     return response;
                 }
             }
@@ -232,8 +246,12 @@ public class Interpreter : MonoBehaviour
             balance = 0;
             performance = 2255f;
             response.Add("PC Upgraded");
-            response.Add("Your current pc performance: " + performance);
-            response.Add("Your current balance $" + balance);
+            response.Add("Your current performance points: " + performance);
+            response.Add("Your current balance = $" + balance);
+            }
+            else if (performance > 2000) 
+            {
+                response.Add("You have already upgraded your PC!");
             }
             else
             {
@@ -246,12 +264,11 @@ public class Interpreter : MonoBehaviour
         {
             if (missionID == 3)
             {
-                response.Add("Tools - Shows available commands for current mission");
+                response.Add("TARGETINFO - Shows information of the target.");
                 response.Add("VPN - Turn on/off Virtual Private Network");
-                response.Add("Targetinfo - Shows information of the target.");
-                response.Add("EnterDatabase - Enter GTA V database");
-                response.Add("PCUpgrade - Upgrade your pc to get more performance units, Cost 500");
-                response.Add("BruteForce - Force to crack target's password");
+                response.Add("ENTERDATABASE - Enter Rickstars database");
+                response.Add("BRUTEFORCE - Force to crack password");
+                response.Add("PCUPGRADE - Upgrade your pc to get more performance points, Cost 500");
                 return response;
             }
             else
@@ -267,15 +284,21 @@ public class Interpreter : MonoBehaviour
                 if (vpn == false)
                 {
                     response.Add("Entering database...");
-                    ListEntry("Boss", "I think something went wrong!");
-                    ListEntry("Boss", "You have 50 seconds time to finish the job before FBI arrives");
-                    bruteforce = true;
+                    if (password == true)
+                    {
+                        response.Add("Password required");
+                    }
+                    boss("Boss", "I think something went wrong!");
+                    boss("Boss", "You have 50 seconds time to finish the job before FBI arrives");
+                    canbruteforce = true;
                 } else if (vpn == true)
                 {
                     response.Add("Entering the database...");
-                    response.Add("You need to crack the admin password in order to acces the database!");
-                    response.Add("Use this command again when you got password for admin");
-                    bruteforce = true;
+                    canbruteforce = true;
+                    if (bruteforced == false)
+                    {
+                    boss("Boss", "You need to crack the admin password in order to acces the database!");
+                    }
                 }
                 return response;
             }
@@ -289,8 +312,9 @@ public class Interpreter : MonoBehaviour
         {
             if (missionID == 3)
             {
-                //response.Add("Age: " + targetAge);
                 response.Add("Email: " + targetEmail);
+                boss("Boss", "You will need this e-mail address when accessing the database.");
+                //response.Add("Age: " + targetAge);
                 //response.Add("IPv4: " + targetIP);
                 //response.Add("Full name: " + targetName);
                 //response.Add("Phone Number: " + targetPhone);
@@ -320,13 +344,14 @@ public class Interpreter : MonoBehaviour
         {
             if (missionID == 1)
             {
-                ListEntry("Boss", "Welcome to Incredible Hacking Game!");
-                ListEntry("Boss", "In order to start your journey use command \"HELP\" or \"MISSION\"");
+                boss("Boss", "Welcome to Incredible Hacking Game!");
+                boss("Boss", "In order to start your hacking journey use commands \"HELP\" or \"MISSION\" to get");
+                notification("more infomation.");
                 missionID = 3;
                 Debug.Log(missionID);
             } else
             {
-                response.Add("Command not recognized try command HELP");
+                response.Add("Command not recognized try command \"HELP\"");
             }
             return response;
         }
@@ -339,9 +364,25 @@ public class Interpreter : MonoBehaviour
         return leftTag + s + rightTag;
     }
 
-    void ListEntry(string a, string b)
+    void boss(string a, string b)
     {
-        response.Add(ColorString(a, colors["green"]) + ": " + ColorString(b, colors["red"]));
+        response.Add(ColorString(a, colors["red"]) + ": " + ColorString(b, colors["green"]));
+    }
+    void help(string d, string e)
+    {
+        response.Add(ColorString(d, colors["green"]) + ": " + ColorString(e, colors["orange"]));
+    }
+    void notification(string c)
+    {
+        response.Add(ColorString(c, colors["green"]));
+    }
+        void notification2(string w)
+    {
+        response.Add(ColorString(w, colors["red"]));
+    }
+    void cost(string f, string g, string h)
+    {
+        response.Add(ColorString(f, colors["green"]) + ": " + ColorString(g, colors["orange"]) + ColorString(h, colors["red"]));
     }
     
     void LoadTitle(string path, string color, int spacing)
