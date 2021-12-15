@@ -121,6 +121,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &330679975 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7397395301716831358, guid: 35a78d87024eb2c4490dcbb5b18c375f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7397395300497171549}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &424976114 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1981108839971147709, guid: ee5875c080e199c49b4d253ffd9a1274,
@@ -480,6 +492,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f72cac2310ef894c9b9b78bc7768026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DirectoryText: {fileID: 820970458}
+  DirectoryText2: {fileID: 330679975}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1766,6 +1780,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7397395300736651351, guid: 35a78d87024eb2c4490dcbb5b18c375f,
+        type: 3}
+      propertyPath: m_Text
+      value: Terminal loading...
       objectReference: {fileID: 0}
     - target: {fileID: 7397395301716831359, guid: 35a78d87024eb2c4490dcbb5b18c375f,
         type: 3}
