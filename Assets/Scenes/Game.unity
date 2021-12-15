@@ -1635,7 +1635,7 @@ PrefabInstance:
     - target: {fileID: 1981108840097007690, guid: ee5875c080e199c49b4d253ffd9a1274,
         type: 3}
       propertyPath: m_Text
-      value: Type anything to terminal in order to talk to the Boss.
+      value: Type anything in terminal in order to talk to the Boss.
       objectReference: {fileID: 0}
     - target: {fileID: 1981108840097007691, guid: ee5875c080e199c49b4d253ffd9a1274,
         type: 3}

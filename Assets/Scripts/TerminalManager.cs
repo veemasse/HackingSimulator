@@ -87,10 +87,11 @@ public class TerminalManager : MonoBehaviour
 
     void ScrollToBottom(int lines)
     {
-        if (lines > 4)
+        if (lines > 15)
         {
-            sr.velocity = new Vector2(0, 450);
+            sr.velocity = new Vector2(0, 1500);
         }
+        
         else
         {
             sr.verticalNormalizedPosition = 0;

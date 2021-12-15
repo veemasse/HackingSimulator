@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
-
+using UnityEngine.SceneManagement;
 
 public class Interpreter : MonoBehaviour
 {
@@ -31,13 +31,15 @@ public class Interpreter : MonoBehaviour
 
     int missionID = 1;
 
-    string ip = "176.96.154.32 Reutte";
+    string ip = "176.96.154.32.215 Reutte";
     string cpu ="CPU: Intel® Pentium® III @ 400 MHz";
     string mem ="Memory: 32MB DDR-200";
     string mobo ="Motherboard: ASUS TUSL2-C rev. 1.04 Socket 370 Motherboard";
     string gpu ="GPU: Nvidia Riva TNT";
     string hdd ="HDD: 8.4GB";
 
+    int accountID = 18395;
+    string targetUsername = "harrygamerxd123";
     string targetName = "Harry E. Morris";
     string targetPhone = "580-626-5675";
     string targetAge = "19 Years Old";
@@ -67,8 +69,8 @@ public class Interpreter : MonoBehaviour
                     help("VPN", "Turn on/off Virtual Private Network");
                     help("PAUSE", "Opens incredible pausemenu. You can also use ESC to open it up.");
                     help("SYSTEMINFO", "Shows some ferocious information of your pc and network");
-                    help("HACKERRADIO", "Plays incredible hack beat");
-                    help("Hacker", "Surprise");
+                    help("HACKERRADIO", "Plays incredible beat");
+                    help("Hacker", "yes");
                     help("PING", "Ping your target");
                     help("TOOLS", "List of recommended tools for the current mission");
                     //help("C:", "C Drive");
@@ -83,12 +85,29 @@ public class Interpreter : MonoBehaviour
                 {
                     if (canddos == true)
                     {
-
+                        Globals.EndText = targetUsername + " is now offline like his network.";
+                        Win();
                     }else
                     {
                         response.Add("You  only use DDoS when you have targets IP address.");
                     }
                     return response;
+                }
+                if (args[0] == "sendtrojan")
+                {
+                    if (canddos == true)
+                    {
+                    response.Add("Trojan sent");
+                    Globals.EndText = "Currently " + targetUsername + " suffers from multiple trojan viruses in his pc.";
+                    Win();
+                    }
+                }
+                if (args[0] == "deleteaccount")
+                {
+                    if (canddos == true)
+                    {
+                        Globals.EndText = "Account " + targetUsername + " was deleted.";
+                    }
                 }
                 if (args[0] == "pause")
                 {
@@ -177,13 +196,15 @@ public class Interpreter : MonoBehaviour
                         }
                         else
                         {
-                            response.Add("PC Exploding...");
+                            response.Add("PC Exploded");
+                            Globals.GameOverText = "Your pc exploded :( maybe try upgrading it.";
+                            GameOver();
                             return response;
                         }
                 }
                 else
                 {
-                    response.Add("You can only use bruteforce tool when trying to enter certain databases");
+                    response.Add("You may only use bruteforce tool when trying to enter certain databases.");
                     return response;
                 }
             }
@@ -194,28 +215,30 @@ public class Interpreter : MonoBehaviour
                     response.Add("You successfully entered the database.");
                     boss("Boss", "Hello mr hacker man.");
                     boss("Boss", "Good job, you successfully made it inside the database!");
-                    boss("Boss", "Now we just need an email address.");
+                    boss("Boss", "Now we just need an username.");
                     indatabase = true;
                     return response;
                 }
             }
-            if (args[0] == "HarryEMorris@jourrapide.com")
+            if (args[0] == "harrygamerxd123")
             {
                 if (indatabase == true)
                 {
+                    canddos = true;
                     response.Add("Target information:");
+                    response.Add("Username" + targetUsername);
                     response.Add("Age: " + targetAge);
                     response.Add("Email: " + targetEmail);
                     response.Add("IPv4: " + targetIP);
                     response.Add("Full name: " + targetName);
                     response.Add("Phone Number: " + targetPhone);
+                    response.Add("AccountID" + accountID);
                     boss("Boss", "Hello mr hacker man.");
                     boss("Boss", "Now you got all the needed information of my target.");
-                    boss("Boss", "Use the new commands to get the modder to taste his own medicine!.");
-                    response.Add("New unlocked commands:");
+                    boss("Boss", "Use the following commands to make " + targetUsername + " taste his own medicine!.");
                     response.Add("DDOS");
-                    response.Add("TextBOMBER");
-                    response.Add("SendTrojan");
+                    response.Add("SENDTROJAN");
+                    response.Add("DELETEACCOUNT");
                     return response;
                 }
             }
@@ -246,7 +269,7 @@ public class Interpreter : MonoBehaviour
             balance = 0;
             performance = 2255f;
             response.Add("PC Upgraded");
-            response.Add("Your current performance points: " + performance);
+            response.Add("Current PC performance points: " + performance);
             response.Add("Your current balance = $" + balance);
             }
             else if (performance > 2000) 
@@ -289,7 +312,8 @@ public class Interpreter : MonoBehaviour
                         response.Add("Password required");
                     }
                     boss("Boss", "I think something went wrong!");
-                    boss("Boss", "You have 50 seconds time to finish the job before FBI arrives");
+                    Globals.GameOverText = "FBI Arrived at your door. Maybe hide your location next time?";
+                    GameOver();
                     canbruteforce = true;
                 } else if (vpn == true)
                 {
@@ -312,7 +336,7 @@ public class Interpreter : MonoBehaviour
         {
             if (missionID == 3)
             {
-                response.Add("Email: " + targetEmail);
+                response.Add("Username: " + targetUsername);
                 boss("Boss", "You will need this e-mail address when accessing the database.");
                 //response.Add("Age: " + targetAge);
                 //response.Add("IPv4: " + targetIP);
@@ -419,5 +443,13 @@ public class Interpreter : MonoBehaviour
         this.DirectoryText2.text = "G:/ System32";
         c = false;
         g = true;
+    }
+    public void GameOver()
+    {
+        SceneManager.LoadScene("GameOver");
+    }
+    public void Win()
+    {
+        SceneManager.LoadScene("End");
     }
 }
