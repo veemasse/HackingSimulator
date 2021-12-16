@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
     public static bool Paused = false;
-    
+
+    int cash = Interpreter.balance;
+    float performance = Interpreter.performance;
+
     public GameObject pauseMenuUI;
     void Update()
     {

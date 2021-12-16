@@ -26,8 +26,8 @@ public class Interpreter : MonoBehaviour
     bool canddos = false;
     bool indatabase = false;
 
-    float performance = 920f;
-    int balance = 500;
+    public static float performance = 920f;
+    public static int balance = 500;
 
     int missionID = 1;
 
@@ -73,12 +73,29 @@ public class Interpreter : MonoBehaviour
                     help("Hacker", "yes");
                     help("PING", "Ping your target");
                     help("TOOLS", "List of recommended tools for the current mission");
+                    if (canddos)
+                    {
+                        help("DDOS", "Boot them offline");
+                        help("SENDTROJAN", "Send trojan viruses");
+                        help("DELETEACCOUNT", "Delete his rackstars account");
+                    }
                     //help("C:", "C Drive");
                     //help("G:", "G Drive");
                     return response;
                 }
                 if (args[0] == "test")
                 {
+                    return response;
+                }
+                if (args[0] == "sysinfo" || args[0] == "systeminfo")
+                {
+                    response.Add("Performance of your pc: " + performance);
+                    response.Add(cpu);
+                    response.Add(mem);
+                    response.Add(mobo);
+                    response.Add(gpu);
+                    response.Add(hdd);
+                    response.Add("IPv4: " + ip);
                     return response;
                 }
                 if (args[0] == "ddos")
@@ -122,7 +139,14 @@ public class Interpreter : MonoBehaviour
                 }
                 if (args[0] == "ping")
                 {
-                    response.Add("Pinging...");
+                    if (canddos == true)
+                    {
+                    response.Add("Response from: " + targetIP + " 108ms");
+                    }
+                    else 
+                    {
+                        response.Add("You may not ping anyone right now.");
+                    }
                     return response;
                 }
                 if (args[0] == "Clear")
@@ -163,17 +187,6 @@ public class Interpreter : MonoBehaviour
             {
                 SwitchToC();
             }
-            if (args[0] == "sysinfo" || args[0] == "systeminfo")
-            {
-                response.Add("Performance of your pc: " + performance);
-                response.Add(cpu);
-                response.Add(mem);
-                response.Add(mobo);
-                response.Add(gpu);
-                response.Add(hdd);
-                response.Add("IPv4: " + ip);
-                return response;
-            }
             if (args[0] == "ipconfig")
             {
                 response.Add("IPv4: " + ip);
@@ -185,6 +198,7 @@ public class Interpreter : MonoBehaviour
                 {
                         if (performance > 1000)
                         {
+                            FindObjectOfType<AudioManager>().Play("beep");
                             response.Add("Bruteforcing...");
                             response.Add("Trying password (8492/39330): michelle25");
                             response.Add("Found matching password for \"Admin\": michelle25");
@@ -212,10 +226,11 @@ public class Interpreter : MonoBehaviour
             {
                 if (password == true)
                 {
+                    FindObjectOfType<AudioManager>().Play("beep");
                     response.Add("You successfully entered the database.");
                     boss("Boss", "Hello mr hacker man.");
                     boss("Boss", "Good job, you successfully made it inside the database!");
-                    boss("Boss", "Now we just need an username.");
+                    boss("Boss", "Now we just enter his Rickstars username and you get all the neede information.");
                     indatabase = true;
                     return response;
                 }
@@ -224,6 +239,7 @@ public class Interpreter : MonoBehaviour
             {
                 if (indatabase == true)
                 {
+                    FindObjectOfType<AudioManager>().Play("beep");
                     canddos = true;
                     response.Add("Target information:");
                     response.Add("Username" + targetUsername);
@@ -252,11 +268,13 @@ public class Interpreter : MonoBehaviour
             {
                 if (missionID == 3)
                 {
+                    FindObjectOfType<AudioManager>().Play("beep");
                     response.Add(currentMission);
                     boss("Boss", "Hello mr hacker man.");
                     boss("Boss", "I was just playing Grand Theft Car V.");
-                    boss("Boss", "A modder put me in cage and now I am fuming.");
+                    boss("Boss", "A modder called harryxdgamee123 put me in cage and now I'm fuming.");
                     boss("Boss", "You must stop him!");
+                    boss("Boss", "But first gather some information of him.");
                     boss("Boss", "Use command \"TOOLS\", to see recommended tools for current mission");
                     return response;
                 }
@@ -311,6 +329,7 @@ public class Interpreter : MonoBehaviour
                     {
                         response.Add("Password required");
                     }
+                    FindObjectOfType<AudioManager>().Play("beep");
                     boss("Boss", "I think something went wrong!");
                     Globals.GameOverText = "FBI Arrived at your door. Maybe hide your location next time?";
                     GameOver();
@@ -337,11 +356,13 @@ public class Interpreter : MonoBehaviour
             if (missionID == 3)
             {
                 response.Add("Username: " + targetUsername);
-                boss("Boss", "You will need this e-mail address when accessing the database.");
-                //response.Add("Age: " + targetAge);
-                //response.Add("IPv4: " + targetIP);
-                //response.Add("Full name: " + targetName);
-                //response.Add("Phone Number: " + targetPhone);
+                if (canddos == true)
+                {
+                response.Add("Age: " + targetAge);
+                response.Add("IPv4: " + targetIP);
+                response.Add("Full name: " + targetName);
+                response.Add("Phone Number: " + targetPhone);
+                }
                 return response;
             }
         }
@@ -368,7 +389,8 @@ public class Interpreter : MonoBehaviour
         {
             if (missionID == 1)
             {
-                boss("Boss", "Welcome to Incredible Hacking Game!");
+                FindObjectOfType<AudioManager>().Play("beep");
+                boss("Boss", "Welcome to Incredible Hacking Simulator!");
                 boss("Boss", "In order to start your hacking journey use commands \"HELP\" or \"MISSION\" to get");
                 notification("more infomation.");
                 missionID = 3;

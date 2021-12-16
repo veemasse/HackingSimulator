@@ -1220,6 +1220,11 @@ MonoBehaviour:
     volume: 0.81
     pitch: 1.01
     source: {fileID: 0}
+  - name: beep
+    clip: {fileID: 8300000, guid: 8e8092f6294c3414791f5dd77260f0fd, type: 3}
+    volume: 0.81
+    pitch: 1.01
+    source: {fileID: 0}
 --- !u!4 &1429891476
 Transform:
   m_ObjectHideFlags: 0

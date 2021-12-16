@@ -89,7 +89,7 @@ public class TerminalManager : MonoBehaviour
     {
         if (lines > 15)
         {
-            sr.velocity = new Vector2(0, 1500);
+            sr.velocity = new Vector2(0, 1600);
         }
         
         else
