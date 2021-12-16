@@ -25,24 +25,18 @@ public class TerminalManager : MonoBehaviour
     {
         if (terminalInput.isFocused && terminalInput.text != "" && Input.GetKeyDown(KeyCode.Return))
         {
-            //tallentaa mitä komtentoriville kirjoitetaan.
             string userInput = terminalInput.text;
 
-            //tyhjentää terminaalin
             ClearInputField();
 
             AddDirectoryLine(userInput);
 
-            //Add the interpretation lines
             int lines = AddInterpreterLines( interpreter.Interpret(userInput.ToLower()));
 
-            //Scroll to the bottom of the scrollrect.
             ScrollToBottom(lines);
 
-            //Move the user input line to the end.
             userInputLine.transform.SetAsLastSibling();
 
-            //refocus the input field
             terminalInput.ActivateInputField();
             terminalInput.Select();
         }
@@ -55,7 +49,6 @@ public class TerminalManager : MonoBehaviour
 
     void AddDirectoryLine(string userInput)
     {
-        //Muokkaa sisällön kokoa
         Vector2 msgListSize = msgList.GetComponent<RectTransform>().sizeDelta;
         msgList.GetComponent<RectTransform>().sizeDelta = new Vector2(msgListSize.x, msgListSize.y + 35.0f);
 
@@ -69,16 +62,13 @@ public class TerminalManager : MonoBehaviour
     {
         for (int i = 0; i < interpretation.Count; i++)
         {
-            //response line
             GameObject res = Instantiate(responseLine, msgList.transform);
 
             res.transform.SetAsLastSibling();
             
-            //Get the size of message list
             Vector2 listSize = msgList.GetComponent<RectTransform>().sizeDelta;
             msgList.GetComponent<RectTransform>().sizeDelta = new Vector2(listSize.x, listSize.y + 35.0f);
 
-            //Set the text of this response line to be whatever the intepreter string is.
             res.GetComponentInChildren<Text>().text = interpretation[i];
         }
 
