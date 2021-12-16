@@ -54,8 +54,7 @@ public class Interpreter : MonoBehaviour
         response.Clear();
 
         string[] args = userInput.Split();
-
-        //Return info about the command
+        
         if (missionID > 2)
         {
             {
@@ -274,7 +273,7 @@ public class Interpreter : MonoBehaviour
                     response.Add(currentMission);
                     boss("Boss", "Hello mr hacker man.");
                     boss("Boss", "I was just playing Grand Theft Car V.");
-                    boss("Boss", "A modder called harryxdgamee123 put me in cage and now I'm fuming.");
+                    boss("Boss", "A modder called harryxdgamer123 put me in cage and now I'm fuming.");
                     boss("Boss", "You must stop him!");
                     boss("Boss", "But first gather some information of him.");
                     boss("Boss", "Use command \"TOOLS\", to see recommended tools for current mission");
