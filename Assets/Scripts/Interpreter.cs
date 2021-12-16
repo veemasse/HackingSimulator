@@ -71,6 +71,8 @@ public class Interpreter : MonoBehaviour
                     help("SYSTEMINFO", "Shows some ferocious information of your pc and network");
                     help("HACKERRADIO", "Plays incredible beat");
                     help("Hacker", "yes");
+                    help("BALANCE", "Checks your balance");
+                    help("PERFORMANCE", "Shows your PC Performance");
                     help("PING", "Ping your target");
                     help("TOOLS", "List of recommended tools for the current mission");
                     if (canddos)
@@ -310,6 +312,7 @@ public class Interpreter : MonoBehaviour
                 response.Add("ENTERDATABASE - Enter Rickstars database");
                 response.Add("BRUTEFORCE - Force to crack password");
                 response.Add("PCUPGRADE - Upgrade your pc to get more performance points, Cost 500");
+                response.Add("PERFORMANCE - Check your pc performance");
                 return response;
             }
             else
